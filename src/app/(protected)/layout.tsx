@@ -1,10 +1,20 @@
+import { redirect } from "next/navigation";
 import { type PropsWithChildren } from "react";
 import { DashboardSidebar } from "~/components/dashboard/dashboard-sidebar";
 import { MobileSidebar } from "~/components/dashboard/mobile-sidebar";
+import { UserDropdown } from "~/components/dashboard/user-dropdown";
 import { ToggleTheme } from "~/components/toggle-theme";
 import { sidebarLinks } from "~/config/dashboard-links";
+import { getCurrentUser } from "~/lib/auth/get-user";
 
 export default async function DashboardLayout({ children }: PropsWithChildren) {
+
+  const user = await getCurrentUser()
+
+  if (!user) {
+    redirect("/auth/log-in")
+  }
+
   return (
     <div className="relative flex min-h-screen w-full">
       <DashboardSidebar links={sidebarLinks} />
@@ -17,6 +27,7 @@ export default async function DashboardLayout({ children }: PropsWithChildren) {
             <div className="w-full flex-1">search</div>
 
             <ToggleTheme />
+            <UserDropdown user={user} />
           </div>
         </header>
 
