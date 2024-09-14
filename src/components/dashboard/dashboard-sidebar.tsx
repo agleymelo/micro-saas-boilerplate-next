@@ -1,6 +1,14 @@
 "use client";
 
+import {
+  PanelLeftClose,
+  PanelRightClose
+} from "lucide-react";
+import { Fragment, useEffect, useState } from "react";
+import { type SidebarNavItem } from "~/config/dashboard-links";
 import { useMediaQuery } from "~/hooks/use-media-query";
+import { cn } from "~/lib/utils";
+import { Button } from "../ui/button";
 import { ScrollArea } from "../ui/scroll-area";
 import {
   Tooltip,
@@ -8,17 +16,6 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "../ui/tooltip";
-import { cn } from "~/lib/utils";
-import { Fragment, useState } from "react";
-import { Button } from "../ui/button";
-import {
-  CircleDashedIcon,
-  Laptop,
-  PanelLeftClose,
-  PanelRightClose,
-} from "lucide-react";
-import { type SidebarNavItem } from "~/config/dashboard-links";
-import { usePathname } from "next/navigation";
 import { DashboardNextLink } from "../wrappers/dashboard-next-link";
 
 type DashboardSidebarProps = {
@@ -26,8 +23,6 @@ type DashboardSidebarProps = {
 };
 
 export function DashboardSidebar({ links }: DashboardSidebarProps) {
-  const path = usePathname();
-
   const { isTablet } = useMediaQuery();
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(!isTablet);
 
@@ -35,7 +30,9 @@ export function DashboardSidebar({ links }: DashboardSidebarProps) {
     setIsSidebarExpanded(!isSidebarExpanded);
   }
 
-  // useEffect
+  useEffect(() => {
+    setIsSidebarExpanded(!isTablet);
+  }, [isTablet]);
 
   return (
     <TooltipProvider delayDuration={0}>
