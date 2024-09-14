@@ -1,6 +1,7 @@
 import { type PropsWithChildren } from "react";
 import { DashboardSidebar } from "~/components/dashboard/dashboard-sidebar";
 import { MobileSidebar } from "~/components/dashboard/mobile-sidebar";
+import { ToggleTheme } from "~/components/toggle-theme";
 import { sidebarLinks } from "~/config/dashboard-links";
 
 export default async function DashboardLayout({ children }: PropsWithChildren) {
@@ -12,6 +13,10 @@ export default async function DashboardLayout({ children }: PropsWithChildren) {
         <header className="sticky top-0 z-50 flex h-14 bg-background px-4 lg:h-[60px] xl:px-8">
           <div className="flex max-w-7xl items-center gap-x-3 px-0 container max-w-6xl">
             <MobileSidebar links={sidebarLinks} />
+
+            <div className="w-full flex-1">search</div>
+
+            <ToggleTheme />
           </div>
         </header>
 
