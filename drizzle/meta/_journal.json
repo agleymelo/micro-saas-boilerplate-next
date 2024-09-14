@@ -8,6 +8,13 @@
       "when": 1726273300878,
       "tag": "0000_quick_cassandra_nova",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1726308952984,
+      "tag": "0001_daffy_pixie",
+      "breakpoints": true
     }
   ]
 }
