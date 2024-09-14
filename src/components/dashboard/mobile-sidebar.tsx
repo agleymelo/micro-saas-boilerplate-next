@@ -9,6 +9,7 @@ import { MenuIcon } from "lucide-react";
 import { ScrollArea } from "../ui/scroll-area";
 import Link from "next/link";
 import { DashboardNextLink } from "../wrappers/dashboard-next-link";
+import { SelectTeams } from "./select-teams";
 
 type MobileSidebarProps = {
   links: SidebarNavItem[];
@@ -45,6 +46,8 @@ export function MobileSidebar({ links }: MobileSidebarProps) {
                     Micro Saas Boilerplate
                   </span>
                 </Link>
+
+                <SelectTeams large={true} />
 
                 {links.map(section => (
                   <section key={section.title} className="flex flex-col gap-1">

@@ -1,9 +1,6 @@
 "use client";
 
-import {
-  PanelLeftClose,
-  PanelRightClose
-} from "lucide-react";
+import { PanelLeftClose, PanelRightClose } from "lucide-react";
 import { Fragment, useEffect, useState } from "react";
 import { type SidebarNavItem } from "~/config/dashboard-links";
 import { useMediaQuery } from "~/hooks/use-media-query";
@@ -17,6 +14,7 @@ import {
   TooltipTrigger,
 } from "../ui/tooltip";
 import { DashboardNextLink } from "../wrappers/dashboard-next-link";
+import { SelectTeams } from "./select-teams";
 
 type DashboardSidebarProps = {
   links: SidebarNavItem[];
@@ -46,11 +44,7 @@ export function DashboardSidebar({ links }: DashboardSidebarProps) {
           >
             <div className="flex h-full max-h-screen flex-1 flex-col gap-2">
               <div className="flex h-14 items-center p-4 lg:h-[60px]">
-                {isSidebarExpanded ? (
-                  <select name="" id="">
-                    Teams
-                  </select>
-                ) : null}
+                {isSidebarExpanded ? <SelectTeams /> : null}
 
                 <Button
                   variant="ghost"
@@ -76,10 +70,7 @@ export function DashboardSidebar({ links }: DashboardSidebarProps) {
 
               <nav className="flex flex-1 flex-col gap-8 px-4">
                 {links.map((section) => (
-                  <section
-                    key={section.title}
-                    className="flex flex-col gap-1"
-                  >
+                  <section key={section.title} className="flex flex-col gap-1">
                     {isSidebarExpanded ? (
                       <p className="text-xs text-muted-foreground">
                         {section.title}
@@ -89,7 +80,7 @@ export function DashboardSidebar({ links }: DashboardSidebarProps) {
                     )}
 
                     {section.items.map((item) => {
-                      const Icon = item.Icon
+                      const Icon = item.Icon;
 
                       return (
                         item.href && (
@@ -112,7 +103,7 @@ export function DashboardSidebar({ links }: DashboardSidebarProps) {
                                     disabled={item.disabled}
                                   >
                                     <span className="flex size-full items-center justify-center">
-                                    {Icon && <Icon className="size-5" />}
+                                      {Icon && <Icon className="size-5" />}
                                     </span>
                                   </DashboardNextLink>
                                 </TooltipTrigger>
